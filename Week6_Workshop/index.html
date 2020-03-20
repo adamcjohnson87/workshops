@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" type="text/css" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="js/config.js"></script> <!--ACJ 20200319-->
 <script type="text/javascript" src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
@@ -17,7 +18,13 @@
 	</div>
 	
 	
-	<div role="main" class="ui-content">
+	<div role="main" class="ui-content" id="listDiv">
+
+		<a href="#popupBasic" data-rel="popup" data-role="button">Open Popup</a>
+        
+        <div data-role="popup" id="popupBasic">
+            <p>There be sharks in these waters.<p>
+        </div>
 
 		<p>
 			Welcome to the Camden Hotel. We are luxury hotel specializing in catering to the rich and overly privileged. 
@@ -32,14 +39,32 @@
 		<li><a href="tourist.html" rel="external">Local Activities</a></li>
 		<li><a href="contact.html" rel="external">Contact Us</a></li>
 		<li><a href="" rel="external">Non-Mobile Site</a></li>
+		<li><a href="shark.html">To Sharks</a></li> <!--ACJ 20200319 W10 #1-->
 		</ul>
-	</div>
+		
+		<input type="button" id="btnAddList" value="Add sharks.">
 
+	</div>
+   
 	<div data-role="footer">
 		<h4>&copy; Camden Hotel 2016</h4>
 	</div>
 		
 </div>
-
+<script>
+	//ACJ 20200319 W10 #2
+	$("#btnAddList").click(function() {	
+		var html="<ul data-role='listview' data-inset='true' id='newList'>"+
+		"<li>Great White</li><li>Jaws</li><li>Xenomorpgh(totally a shark)</ul>";
+		$("#listDiv").append(html);
+		$("#newList").listview();
+	});
+	//ACJ 20200319 W10 #3
+	$(document).on('pageinit', '.ui-page',function(event){
+    setTimeout(function () {
+        $('#popupBasic').popup('open');
+    }, 3);
+	});
+</script>
 </body>
 </html>
